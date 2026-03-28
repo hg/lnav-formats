@@ -35,6 +35,17 @@
         "kind": "string",
         "description": "Exception/error message"
       },
+      "UserName": {
+        "kind": "string",
+        "identifier": true,
+        "description": "Primary identity of the authenticated user"
+      },
+      "ClientIp": {
+        "kind": "string",
+        "collate": "ipaddress",
+        "identifier": true,
+        "description": "Remote IP address of the client"
+      },
       "ConnectionId": {
         "kind": "string",
         "identifier": true,
@@ -50,6 +61,11 @@
         "identifier": true,
         "description": "Controller Action ID"
       },
+      "ActionName": {
+        "kind": "string",
+        "identifier": true,
+        "description": "Controller Action Name"
+      },
       "SourceContext": {
         "kind": "string",
         "identifier": true,
@@ -60,11 +76,11 @@
         "identifier": true,
         "description": "HTTP request method"
       },
-      "RequestPath": {
-        "kind": "string",
-        "identifier": true,
-        "description": "HTTP request URL"
-      }
+      "StatusCode": { "kind": "integer", "foreign-key": true },
+      "RequestPath": { "kind": "string", "identifier": true },
+      "Method": { "kind": "string", "identifier": true },
+      "Path": { "kind": "string", "identifier": true },
+      "Host": { "kind": "string", "identifier": true }
     }
   }
 }

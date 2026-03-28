@@ -1,0 +1,70 @@
+{
+  "$schema": "https://lnav.org/schemas/format-v1.schema.json",
+  "aspnet_serilog": {
+    "title": "ASP.NET Serilog",
+    "description": "Format for ASP.NET applications using Serilog",
+    "file-type": "json",
+    "timestamp-field": "@t",
+    "timestamp-format": ["%Y-%m-%dT%H:%M:%S.%f%z"],
+    "level-field": "@l",
+    "opid-field": "@tr",
+    "opid": {
+      "subid": "@sp"
+    },
+    "body-field": "@mt",
+    "convert-to-local-time": true,
+    "line-format": [
+      { "field": "__timestamp__" },
+      " [",
+      { "field": "@l" },
+      "] ",
+      { "field": "@mt" }
+    ],
+    "value": {
+      "@tr": {
+        "kind": "string",
+        "identifier": true,
+        "description": "Trace ID"
+      },
+      "@sp": {
+        "kind": "string",
+        "identifier": true,
+        "description": "Span ID"
+      },
+      "@x": {
+        "kind": "string",
+        "description": "Exception/error message"
+      },
+      "ConnectionId": {
+        "kind": "string",
+        "identifier": true,
+        "description": "Connection ID"
+      },
+      "RequestId": {
+        "kind": "string",
+        "identifier": true,
+        "description": "Request ID"
+      },
+      "ActionId": {
+        "kind": "string",
+        "identifier": true,
+        "description": "Controller Action ID"
+      },
+      "SourceContext": {
+        "kind": "string",
+        "identifier": true,
+        "description": "Class that generated this log entry"
+      },
+      "RequestMethod": {
+        "kind": "string",
+        "identifier": true,
+        "description": "HTTP request method"
+      },
+      "RequestPath": {
+        "kind": "string",
+        "identifier": true,
+        "description": "HTTP request URL"
+      }
+    }
+  }
+}

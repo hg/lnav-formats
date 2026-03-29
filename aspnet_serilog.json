@@ -21,24 +21,29 @@
       { "field": "@mt" }
     ],
     "value": {
-      "@tr": {
-        "kind": "string",
-        "identifier": true,
-        "description": "Trace ID"
-      },
       "@sp": {
         "kind": "string",
         "identifier": true,
         "description": "Span ID"
       },
+      "@tr": {
+        "kind": "string",
+        "identifier": true,
+        "description": "Trace ID"
+      },
       "@x": {
         "kind": "string",
         "description": "Exception/error message"
       },
-      "UserName": {
+      "ActionId": {
         "kind": "string",
         "identifier": true,
-        "description": "Primary identity of the authenticated user"
+        "description": "Controller action ID"
+      },
+      "ActionName": {
+        "kind": "string",
+        "identifier": true,
+        "description": "Controller action name"
       },
       "ClientIp": {
         "kind": "string",
@@ -51,36 +56,75 @@
         "identifier": true,
         "description": "Connection ID"
       },
+      "ContentType": {
+        "kind": "string",
+        "identifier": true,
+        "description": "MIME content type"
+      },
+      "Host": {
+        "kind": "string",
+        "identifier": true,
+        "description": "HTTP request host"
+      },
+      "Method": {
+        "kind": "string",
+        "identifier": true,
+        "description": "HTTP request method"
+      },
+      "Path": {
+        "kind": "string",
+        "identifier": true,
+        "description": "HTTP request path"
+      },
+      "PathBase": {
+        "kind": "string",
+        "identifier": true,
+        "description": "HTTP request base path"
+      },
+      "Protocol": {
+        "kind": "string",
+        "identifier": true,
+        "description": "Network protocol name and version"
+      },
       "RequestId": {
         "kind": "string",
         "identifier": true,
         "description": "Request ID"
-      },
-      "ActionId": {
-        "kind": "string",
-        "identifier": true,
-        "description": "Controller Action ID"
-      },
-      "ActionName": {
-        "kind": "string",
-        "identifier": true,
-        "description": "Controller Action Name"
-      },
-      "SourceContext": {
-        "kind": "string",
-        "identifier": true,
-        "description": "Class that generated this log entry"
       },
       "RequestMethod": {
         "kind": "string",
         "identifier": true,
         "description": "HTTP request method"
       },
-      "StatusCode": { "kind": "integer", "foreign-key": true },
-      "RequestPath": { "kind": "string", "identifier": true },
-      "Method": { "kind": "string", "identifier": true },
-      "Path": { "kind": "string", "identifier": true },
-      "Host": { "kind": "string", "identifier": true }
+      "RequestPath": {
+        "kind": "string",
+        "identifier": true,
+        "description": "HTTP request path"
+      },
+      "Scheme": {
+        "kind": "string",
+        "identifier": true,
+        "description": "Network request scheme"
+      },
+      "SourceContext": {
+        "kind": "string",
+        "identifier": true,
+        "description": "Class that generated this log entry"
+      },
+      "StatusCode": {
+        "kind": "integer",
+        "foreign-key": true,
+        "rewriter": ";SELECT :StatusCode || ' (' || coalesce((SELECT message FROM http_status_codes WHERE status = :StatusCode), 'Unknown') || ') '"
+      },
+      "UserName": {
+        "kind": "string",
+        "identifier": true,
+        "description": "Primary identity of the authenticated user"
+      },
+      "commandText": {
+        "kind": "string",
+        "description": "SQL executed by EF"
+      }
     }
   }
 }
